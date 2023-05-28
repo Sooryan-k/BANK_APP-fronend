@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Anton&family=Bebas+Neue&family=Cinzel+Decorative:wght@900&family=Cinzel:wght@600;800&family=Courgette&family=Fjalla+One&family=Graduate&family=Josefin+Slab:ital,wght@1,100;1,700&family=Lato:wght@700&family=Merienda:wght@300&family=PT+Serif&family=Pacifico&family=Roboto+Condensed:wght@300;400;700&family=Rubik+Gemstones&family=Rubik+Vinyl&family=Signika:wght@300&family=Source+Code+Pro:wght@300&family=Space+Grotesk:wght@300&family=Tilt+Prism&family=Ubuntu:wght@300;400&family=Zilla+Slab:wght@300;400&display=swap');
+body{
+    font-family: 'oxygen',sans-serif;
+}

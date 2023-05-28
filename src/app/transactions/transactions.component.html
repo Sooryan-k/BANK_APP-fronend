@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <img class="fs-5" src="https://pngimg.com/uploads/bank/bank_PNG5.png" alt="" width="50%" height="100%">
+            </div>
+            <div class="col-9" style="padding-top: 2%;">
+                <h2 class="text-light">ZYX BANK APP</h2>
+            </div>
+        </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExample"><i class="fa-solid fa-comment-dollar me-2"></i>Balance Enquiry</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-money-bill-transfer me-2"></i> Fund Transfer</a></li>
+              <li><a class="dropdown-item" routerLink="/transactions"><i class="fa-solid fa-clock-rotate-left me-2"></i>Transaction History</a></li>
+              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-trash me-2"></i>Remove Account</a></li>
+              <li><a (click)="logout()"  class="dropdown-item"><i class="fa-solid fa-right-from-bracket me-2"></i>SignOut</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- main Content -->
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">Transaction History</h1>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel voluptates soluta dolore, nesciunt nulla dolor laudantium possimus nobis ipsum ab ducimus voluptatem harum ratione quisquam enim, debitis, sequi autem dicta!</p>
+            <!-- search -->
+            <div class="row">
+                <div class="col-8">
+                    <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Search By">
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-success w-50" style="float: right;" (click)="generatePDF()">Export as PDF</button>
+                </div>
+            </div>
+            <!-- table -->
+            <caption>Transaction Details</caption>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">From Acno</th>
+                    <th scope="col">To Acno</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let trans of transaction| search:searchTerm:'type' let i=index">
+                    <th  *ngIf="trans.type=='Debit'" class="text-danger" scope="row">{{i+1}}</th>
+                    <td  *ngIf="trans.type=='Debit'" class="text-danger">{{trans.type}}</td>
+                    <td  *ngIf="trans.type=='Debit'" class="text-danger">{{trans.fromAcno}}</td>
+                    <td  *ngIf="trans.type=='Debit'" class="text-danger">{{trans.toAcno}}</td>
+                    <td  *ngIf="trans.type=='Debit'" class="text-danger">{{trans.amount}}</td>
+
+
+                    <th *ngIf="trans.type=='Credit'" class="text-success" scope="row">{{i+1}}</th>
+                    <td *ngIf="trans.type=='Credit'" class="text-success">{{trans.type}}</td>
+                    <td *ngIf="trans.type=='Credit'" class="text-success">{{trans.fromAcno}}</td>
+                    <td *ngIf="trans.type=='Credit'" class="text-success">{{trans.toAcno}}</td>
+                    <td *ngIf="trans.type=='Credit'" class="text-success">{{trans.amount}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div style="margin-top: 100px;" class="row">
+    <div class="col">
+        <footer class="bg-dark text-white text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2023 Copyright:
+              <a class="text-white" href="https://mdbootstrap.com/">ZYX.com</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+    </div>
+</div>

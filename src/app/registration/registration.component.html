@@ -1,0 +1,83 @@
+<nav class="navbar navbar-light bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <img class="fs-5" src="https://pngimg.com/uploads/bank/bank_PNG5.png" alt="" width="50%" height="100%">
+            </div>
+            <div class="col-9" style="padding-top: 2%;">
+                <h2 class="text-light">ZYX BANK APP</h2>
+            </div>
+        </div>
+    </div>
+  </nav>
+
+  <marquee class="text-success fs-5 bold fw-bolder" behavior="alternate" direction="">Get a new saving account and enjoy flat 5% off on your first 10 transaction !</marquee>
+
+
+  <!-- Register loading setup -->
+  <div *ngIf="regSuccessMsg" class="container text-center text-primary m-5">
+    <h2>
+      <img class="w-25" src="https://th.bing.com/th/id/R.7daab030fcdff132997fe0440b134401?rik=nVdkv4Bihm5x6w&pid=ImgRaw&r=0" alt="">
+      Your data getting registered.....Please wait...
+    </h2>
+  </div>
+
+  <!-- form -->
+  
+  <div *ngIf="!regSuccessMsg" class="container">
+    <div class="row" style=" margin-top: 30px;">
+      <div style="margin-left: 8%; border-radius: 30px;" class="col-10">
+        <div style="margin: 0px; padding: 0px;" class="row">
+          <div class="col-6">
+            <img style="width: 100%;border-radius: 30px;" src="https://image.freepik.com/free-vector/data-protection-desktop-pc-with-authorization-form-screen-personal-data-protection-data-access-login-form-laptop-screen_127544-140.jpg" alt="">
+          </div>
+          <div class="col-6" style="padding: 50px; border-radius: 30px; background-color: rgb(119, 235, 210);">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form-floating mt-2">
+                <input type="number" name="acno" formControlName="acno" class="form-control" id="floatingInput" placeholder="Account Number">
+                <div *ngIf="this.registerForm.get('acno')?.errors&&this.registerForm.get('acno')?.touched" class="text-danger">Invalid Account Number</div>
+                <label for="floatingInput">Account Number</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input type="text" name="usernamee" formControlName="username" class="form-control" id="floatingInput" placeholder="Username">
+                <div *ngIf="this.registerForm.get('username')?.errors&&this.registerForm.get('username')?.touched" class="text-danger">Invalid Username</div>
+                <label for="floatingInput">Username</label>
+              </div>
+              <div class="form-floating mt-2">
+                <input type="password" name="password" formControlName="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <div *ngIf="this.registerForm.get('password')?.errors&&this.registerForm.get('password')?.touched" class="text-danger">Invalid Password</div>
+                <label for="floatingPassword">Password</label>
+              </div>
+              <!-- Register Error Message -->
+              <div class="text-danger mt-2 fw-bolder">
+                <!-- error message -->
+                {{regErrorMsg}}
+              </div>
+              <div style="padding: 30px;" class="text-center mt-4">
+                <button type="submit" style="height: 50px;" class="w-50 btn btn-success">Sign Up</button>
+              </div>
+              <div class="text-center mt-5">
+                <a style="text-decoration: none;" routerLink=''>Already have an account? Please Sign In</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  
+  <!-- footer -->
+  <div style="margin-top: 100px;" class="row">
+    <div class="col">
+        <footer class="bg-dark text-white text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2023 Copyright:
+              <a class="text-white" href="https://mdbootstrap.com/">ZYX.com</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+    </div>
+    </div>
+    

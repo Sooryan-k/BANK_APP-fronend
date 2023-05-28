@@ -1,0 +1,145 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <img class="fs-5" src="https://pngimg.com/uploads/bank/bank_PNG5.png" alt="" width="50%" height="100%">
+            </div>
+            <div class="col-9" style="padding-top: 2%;">
+                <h2 class="text-light">ZYX BANK APP</h2>
+            </div>
+        </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a (click)="getBalance()" class="dropdown-item" data-bs-toggle="offcanvas" href="#offcanvasExample"><i class="fa-solid fa-comment-dollar me-2"></i>Balance Enquiry</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-money-bill-transfer me-2"></i> Fund Transfer</a></li>
+              <li><a class="dropdown-item" routerLink="/transactions"><i class="fa-solid fa-clock-rotate-left me-2"></i>Transaction History</a></li>
+              <li><a (click)="deleteAccount()" class="dropdown-item"><i class="fa-solid fa-trash me-2"></i>Remove Account</a></li>
+              <li><a (click)="logout()" class="dropdown-item"><i class="fa-solid fa-right-from-bracket me-2"></i>SignOut</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ <!-- balance Enquiry -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header bg-success">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Balance Enquiry</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body bg-dark">
+      <img width="100%" height="50%" src="https://static.vecteezy.com/system/resources/previews/000/635/356/original/financial-investments-concept-business-assistant-vector-illustration.jpg" alt="">
+      <div class="text-light">
+        <h3 class="">Hi {{user}},</h3>
+        <h5>Your current Balance is <span class="text-danger">Rs:{{balance}}</span></h5>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div *ngIf="logoutStatus" style="width: 100% ; height: 1000px;">
+      <h1 class="m-5 p-5 text-center">Please wait ..... <br> While you are logging out</h1>
+
+    </div>
+  </div>
+
+  <app-delete-account (onCancel)="cancelDelete()" (onDelete)="deleteFromParent()" [deleteAcno]="acno"></app-delete-account>
+
+  <!-- maincontent -->
+  <div *ngIf="deleteSuccessMessage" class="m-5 p-5">
+    <h1 class="text-center text-danger">{{deleteSuccessMessage}}</h1>
+  </div>
+
+
+  <div class="container" *ngIf="!logoutStatus" >
+    <div class="row" *ngIf="!deleteConfirmStatus">
+        <div class="col-sm-6">
+            <!-- Content -->
+            <h1 class="mt-5">Welcome {{user}}</h1>
+            <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt eligendi, ab dolore ad explicabo excepturi doloribus, ducimus reprehenderit quae officiis aspernatur error qui vel, itaque facere. Provident voluptatem dolore id!</p>
+            <div class="collapse" id="collapseExample">
+                <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque commodi adipisci non eligendi corrupti optio veritatis fuga voluptatem provident. Illo, facere. Nam excepturi quae pariatur sed aspernatur nobis enim numquam.
+                Fuga impedit culpa repellendus esse, ad id sed sequi possimus, praesentium aspernatur facilis error, quas minus recusandae nobis dignissimos dicta nulla illo reprehenderit amet dolores molestiae? Error accusamus reiciendis nulla.
+                Necessitatibus, nam dolorum inventore, ducimus odit omnis delectus nihil at quis minima sint officiis aut optio. Pariatur nulla corrupti, sequi tempore excepturi ducimus ea a exercitationem eius, voluptas, cumque in.</p>
+              </div>
+            <button (click)="collapse()" class="btn btn-primary mb-5" data-bs-toggle="collapse" data-bs-target="#collapseExample">Read
+              <span *ngIf="isCollapse">More</span>
+              <span *ngIf="!isCollapse">Less</span>
+            </button>
+            
+        </div>
+        <div  class="col-md-6">
+            <!-- image -->
+            <img class="w-100" src="https://image.freepik.com/free-vector/online-banking-account-illustration-digital-wallet-ewallet-services-cartoon-concept-financial-management-ebanking-transactions-internet-billing-system-metaphor-white_151150-1253.jpg" alt="">
+        </div>
+    </div>
+  </div>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Fund Transfer</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img width="100%" src="https://th.bing.com/th/id/R.2719e30167421eb6538ec55ea0573f4a?rik=xfMuqMVuzIb2bA&riu=http%3a%2f%2ftesting.hvsfinancial.com%2fhvsfinancial%2fwp-content%2fuploads%2f2020%2f04%2fappendix-illustration-1024x683.png&ehk=fEp5hm9fkkR55Bhxvazvvw5%2b0e81sfd5NICNasArPFM%3d&risl=&pid=ImgRaw&r=0" alt="">
+          <form [formGroup]="transferForm">
+            <div class="form-floating mb-3">
+              <input name="acno" formControlName="acno" type="text" class="form-control" id="floatingInput" placeholder="Credit Account">
+              <div *ngIf="this.transferForm.get('acno')?.errors&&this.transferForm.get('acno')?.touched" class="text-danger">Invalid Account Number</div>
+              <label for="floatingInput">Credit Account</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="amount" formControlName="amount" type="text" class="form-control" id="floatingamount" placeholder="Amount">
+              <div *ngIf="this.transferForm.get('acno')?.errors&&this.transferForm.get('acno')?.touched" class="text-danger">Invalid Amount</div>
+              <label for="floatingamount">Amount</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="password" formControlName="password" type="password" class="form-control" id="floatingpassword" placeholder="Password">
+              <div *ngIf="this.transferForm.get('password')?.errors&&this.transferForm.get('password')?.touched" class="text-danger">Invalid Password</div>
+              <label for="floatingPassword">Password</label>
+            </div>
+            
+          </form>
+        </div>
+
+        <div class="p-1 text-center text-success mb-3 fw-bolder">
+          <!-- fund transfer successful message -->
+          {{fundTransferSuccessMsg}}
+        </div>
+        <div class="p-1 text-center text-danger mb-3 fw-bolder">
+          <!-- fund  transfer error message -->
+          {{fundTransferErrorMsg}}
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          <button (click)="fundtransfer()" type="button" class="btn btn-primary">Transfer</button>
+          <button (click)="resetForm()" type="button" class="btn btn-dark">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div *ngIf="!deleteConfirmStatus"  style="margin-top: 100px;" class="row">
+    <div class="col">
+        <footer class="bg-dark text-white text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+              © 2023 Copyright:
+              <a class="text-white" href="https://mdbootstrap.com/">ZYX.com</a>
+            </div>
+            <!-- Copyright -->
+          </footer>
+    </div>
+</div>
